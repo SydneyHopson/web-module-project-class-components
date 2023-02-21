@@ -1,6 +1,6 @@
 import React from 'react'
 import TodoList from './TodoList';
-
+import Form from './Form'
 
 
    
@@ -42,10 +42,7 @@ constructor() {
         <TodoList key={todos.id} todos={todos} />
 
 
-        <form>
-          <input/>
-          <button>Add</button>
-        </form>
+       <Form/>
         <button>Clear</button>
 
       </div>
