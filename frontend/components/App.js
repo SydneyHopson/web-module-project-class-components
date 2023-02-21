@@ -1,4 +1,9 @@
 import React from 'react'
+import TodoList from './TodoList';
+
+
+
+   
 
 export default class App extends React.Component {
 // create state here second to be able to change the list items
@@ -34,15 +39,7 @@ constructor() {
       <div>
         {/* create the frame work here first */}
         <h1>Todos </h1>
-        <ul>
-          {/* map over array to generate each list item  */}
-          {
-            todos.map(todo=> {
-              return (<li> {todo.name} { todo.completed?<span>- completed</span> : <span></span>   } </li>) 
-            })
-          }
-         
-        </ul>
+        <TodoList key={todos.id} todos={todos} />
 
 
         <form>
