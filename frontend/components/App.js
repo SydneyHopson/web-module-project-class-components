@@ -27,15 +27,15 @@ constructor() {
     ]
   }
 }
-handleAdd = () => {
+handleAdd = (name) => {
   const newTodo = {
-    name: "cook dinner",
+    name: name,
     id: Date.now(),
     completed: false
   };
   this.setState({
     ...this.state, todos:[...this.state.todos, newTodo ]
-  })
+  });
 }
 
 handleClear = () => {
@@ -43,7 +43,22 @@ this.setState({
   ...this.state, todos:this.state.todos.filter(todo => { 
     return (todo.completed === false);
   })
-})
+});
+
+handleToggle = (clickedId) => {
+  this.setState({
+    ...this.state, todos: this.state.todos.map(todo=> {
+      if (todo.id === clickedId) {
+        return {
+          ...todo, 
+          completed: !todo.completed
+        }
+      }
+        return todo;
+     
+    })
+  })
+}
 
 }
 
@@ -59,8 +74,8 @@ this.setState({
       <div>
         {/* create the frame work here first */}
         <h1>Todos </h1>
-        <TodoList  key={todos.id} todos={todos} />
-        <Form handleAdd={this.handleAdd}/>
+        <TodoList  handleToggle={this.handleToggle} key={todos.id} todos={todos} />
+        <Form  handleAdd={this.handleAdd}/>
 
        
         <button onClick={this.handleClear} >Clear</button>
