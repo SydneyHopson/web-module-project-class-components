@@ -3,6 +3,7 @@ import TodoList from './TodoList';
 import Form from './Form'
 
 
+
    
 
 export default class App extends React.Component {
@@ -19,12 +20,20 @@ constructor() {
     {
       name: 'Bake Cookies',
       id: 1528817084358,
-      completed: false
+      completed: true
     }
     
     // // add todos here to this array list
     ]
   }
+}
+handleClear = () => {
+this.setState({
+  ...this.state, todos:this.state.todos.filter(todo => { 
+    return (todo.completed === false);
+  })
+})
+
 }
 
 
@@ -40,10 +49,10 @@ constructor() {
         {/* create the frame work here first */}
         <h1>Todos </h1>
         <TodoList key={todos.id} todos={todos} />
+        <Form/>
 
-
-       <Form/>
-        <button>Clear</button>
+       
+        <button onClick={this.handleClear} >Clear</button>
 
       </div>
     )
