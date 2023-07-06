@@ -4,17 +4,70 @@
 <head>
   <script>
     if (!window.location.port && typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object') {
-      window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () { }
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () { };
     }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
   <title>Todo App</title>
+  <link rel="stylesheet" href="./styles/styles.css">
 </head>
 
 <body>
   <div id="root"></div>
+
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script>
+    // JavaScript code using React
+
+    // Comment component
+    function Comment({ text }) {
+      return <li>{text}</li>;
+    }
+
+    // CommentList component
+    function CommentList() {
+      const commentListData = ['Comment 1', 'Comment 2', 'Comment 3'];
+
+      return (
+        <div id="comments">
+          <h2>Comments</h2>
+          <ul>
+            {commentListData.map((comment, index) => (
+              <Comment key={index} text={comment} />
+            ))}
+          </ul>
+        </div>
+      );
+    }
+
+    // Calendar component
+    function Calendar() {
+      const currentDate = new Date().toLocaleDateString();
+
+      return (
+        <div id="calendar">
+          <h2>Calendar</h2>
+          <p>Today's date: <span id="currentDate">{currentDate}</span></p>
+        </div>
+      );
+    }
+
+    // App component
+    function App() {
+      return (
+        <div id="root">
+          <CommentList />
+          <Calendar />
+        </div>
+      );
+    }
+
+    // Render the App component
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
 </body>
 
 </html>

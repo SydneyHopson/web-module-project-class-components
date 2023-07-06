@@ -1,37 +1,36 @@
-import React from 'react'
+import React from 'react';
 
-export default class Form extends React.Component {
-  constructor(){
-    super();
+class Form extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      input: ""
+      comment: ''
+    };
+  }
+
+  handleChange = (event) => {
+    this.setState({ comment: event.target.value });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { comment } = this.state;
+    if (comment.trim() !== '') {
+      this.props.handleAdd(comment);
+      this.setState({ comment: '' });
     }
-  }
-  
-
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.handleAdd(this.state.input);
-
-  }
-  handleChange = (e) => {
-   this.setState({
-    ...this.state,
-    input: e.target.value
-
-   }); 
-  }
-
-
+  };
 
   render() {
-    
+    const { comment } = this.state;
+
     return (
-      <form>
-      <input onChange={this.handleChange} />
-      <button onClick={this.handleSubmit} >Add</button>
-    </form>
-    )
+      <form onSubmit={this.handleSubmit}>
+        <input type="text" value={comment} onChange={this.handleChange} placeholder="Enter a comment" />
+        <button type="submit">Add Comment</button>
+      </form>
+    );
   }
 }
+
+export default Form;
